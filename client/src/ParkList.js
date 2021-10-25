@@ -1,9 +1,18 @@
+import Button from "react-bootstrap/Button"
 
 function ParkList ({ parks, handleClick }) {
     
     const listItems = parks.map(park =>
         <li  key={park.id} type="none"> 
-            <button name={park.name} onClick={handleClick} type="button" className="parkList">{park.name}</button>
+            <Button 
+                name={park.name}
+                variant="outline-success"
+                size="sm"
+                onClick={handleClick} 
+                type="button" 
+                className="parkList">
+                    {park.name}
+            </Button>
         </li>
         )
 

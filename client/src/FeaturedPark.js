@@ -9,7 +9,7 @@ function FeaturedPark({park}) {
 
 <div>
     <h2>{park.name}</h2>
-    <img src={park.image_url}/>
+    <img src={park.image_url} style={{maxWidth: "400px"}}/>
     <p>{park.description}</p>
     <p>{park.location}</p>
     <p>{park.date_established}</p>

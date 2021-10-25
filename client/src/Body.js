@@ -1,5 +1,9 @@
 import ParkList from './ParkList'
 import FeaturedPark from './FeaturedPark'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 
 import { useEffect, useState } from "react";
@@ -27,17 +31,21 @@ function Body () {
         setPark(newPark[0])
     }
 
-    console.log(park)
-
     useEffect(getAPark, [])
     useEffect(getParks, [])
 
     return(
 
-    <div>
-        <ParkList parks={parks} handleClick={handleClick}/>
-        <FeaturedPark park={park}/>
-    </div>
+    <Container>
+        <Row>
+            <Col>
+                <ParkList parks={parks} handleClick={handleClick}/>
+            </Col>
+            <Col>
+                <FeaturedPark park={park}/>
+            </Col>
+        </Row>
+    </Container>
 
 )
 
