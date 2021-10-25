@@ -1,14 +1,22 @@
 
-function ParkList () {
+function ParkList ({parks}) {
 
-    const park = () => {
-        // for each park we display the name inside a stylized button
-    }
+    const listItems = parks.map(park =>
+        <li type="none"> 
+            <button type="button" className="parkList">{park.name}</button>
+        </li>
+        )
+    
 
-    return
+    return (
     <div>
+        <label className="listTitle">National Parks</label>
         <ul>
-            <button type="button" className="parkList">`${park}`</button>
+            {listItems}
         </ul>
+
     </div>
+    )
 }
+
+export default ParkList

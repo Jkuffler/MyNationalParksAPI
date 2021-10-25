@@ -1,3 +1,4 @@
+import ParkList from './ParkList'
 import { useEffect, useState } from "react";
 function Body () {
     const [parks, setParks] = useState([])
@@ -6,12 +7,16 @@ function Body () {
     function getParks (){
         fetch(`${url}/national_parks`)
         .then((r) => r.json())
-        .then(data => console.table(data))
+        .then(data => setParks(data))
     }
+// console.table(parks)
 
     useEffect(getParks, [])
 return(
-    <div></div>
+
+    <div><ParkList parks={parks}/>
+    </div>
+
 )
 
 }
