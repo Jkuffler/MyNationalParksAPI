@@ -17,7 +17,7 @@ function NavBar() {
                 <Nav.Link >
                     My Passport
                 </Nav.Link>
-                <Nav.Link href="/roasters">
+                <Nav.Link>
                     All Parks
                 </Nav.Link>
                 <Nav.Link>
