@@ -15,7 +15,7 @@ function Body () {
     }
 
     function getAPark (){
-        fetch(`${url}/national_parks/7`)
+        fetch(`${url}/national_parks/7`) //math.random for the featured card?
         .then((r) => r.json())
         .then(data => setPark(data))
     }
