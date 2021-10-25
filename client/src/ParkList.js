@@ -1,12 +1,11 @@
 
-function ParkList ({parks}) {
-
+function ParkList ({ parks, handleClick }) {
+    
     const listItems = parks.map(park =>
-        <li type="none"> 
-            <button type="button" className="parkList">{park.name}</button>
+        <li  key={park.id} type="none"> 
+            <button name={park.name} onClick={handleClick} type="button" className="parkList">{park.name}</button>
         </li>
         )
-    
 
     return (
     <div>

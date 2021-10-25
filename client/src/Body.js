@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function Body () {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
+
     const url = "http://localhost:3000"
 
     function getParks (){
@@ -19,14 +20,22 @@ function Body () {
         .then((r) => r.json())
         .then(data => setPark(data))
     }
-console.log(park)
+
+    function handleClick(e) {
+        let name = e.target.name
+        let newPark = parks.filter(p => p.name === name)
+        setPark(newPark[0])
+    }
+
+    console.log(park)
+
     useEffect(getAPark, [])
     useEffect(getParks, [])
 
     return(
 
     <div>
-        <ParkList parks={parks}/>
+        <ParkList parks={parks} handleClick={handleClick}/>
         <FeaturedPark park={park}/>
     </div>
 
