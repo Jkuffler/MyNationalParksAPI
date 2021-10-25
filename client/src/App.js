@@ -8,7 +8,7 @@ function App() {
 
     return(
       <div>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Body/>
       {/* <LoginSignup/> */}
       </div>
