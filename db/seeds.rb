@@ -12,6 +12,9 @@ CSV.foreach('parks.csv') do |row|
     NationalPark.create(name: name, image_url: image_url, location: location, date_established: date_established, area: area, description: description)
 end
 
+User.create(user_name: "Jason", password: "password", bio: "i love tacos")
+User.create(user_name: "David", password: "password", bio: "i love tacos")
+
 puts "done seeding"
 
 # This file should contain all the record creation needed to seed the database with its default values.

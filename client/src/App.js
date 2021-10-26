@@ -2,16 +2,19 @@ import NavBar from './NavBar'
 import Body from './Body'
 import LoginSignup from './LoginSignup'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// const [toggleLogin, setToggleLogin] = useState(false)
+import { useState } from "react"
 
 function App() {
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  console.log(currentUser)
 
     return(
       <div>
       <NavBar/>
       <Body/>
-      {/* <LoginSignup/> */}
+      <LoginSignup setCurrentUser={setCurrentUser}/>
       </div>
       )
 }

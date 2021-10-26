@@ -11,16 +11,14 @@ function Body () {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
 
-    const url = "http://localhost:3000"
-
     function getParks (){
-        fetch(`${url}/national_parks`)
+        fetch(`/national_parks`)
         .then((r) => r.json())
         .then(data => setParks(data))
     }
 
     function getAPark (){
-        fetch(`${url}/national_parks/7`) //math.random for the featured card?
+        fetch(`/national_parks/7`) //math.random for the featured card?
         .then((r) => r.json())
         .then(data => setPark(data))
     }
