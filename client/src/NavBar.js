@@ -1,7 +1,7 @@
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-function NavBar({onPassportClick}) {
+function NavBar() {
 
     return (
         <div>
@@ -15,7 +15,7 @@ function NavBar({onPassportClick}) {
                     My National Parks
                 </Navbar.Brand>
                 <Nav>
-                <Nav.Link onClick={onPassportClick} >
+                <Nav.Link href="/passport" >
                     My Passport
                 </Nav.Link>
                 <Nav.Link href="/">

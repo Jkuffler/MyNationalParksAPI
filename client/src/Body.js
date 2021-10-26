@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import CardContainer from './CardContainer'
 import {Switch, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
+import LoginSignup from './LoginSignup'
 
 function Body ({currentUser, viewVisitCard}) {
     const [parks, setParks] = useState([])
@@ -26,11 +27,9 @@ function Body ({currentUser, viewVisitCard}) {
     }
 
     function getVisits() {
-        currentUser?
             fetch(`/visits`)
             .then((r) => r.json())
             .then(data => setVisits(data))
-        : console.log("Log in required!")
     }
 // console.log(visits)
     function handleClick(e) {
@@ -44,18 +43,18 @@ function Body ({currentUser, viewVisitCard}) {
     useEffect(getVisits, [])
 
     return(
+        <Switch>
+            <Route exact path="/">
+                <FeaturedPark park={park} parks={parks} handleClick={handleClick}/>
+            </Route>
+            <Route exact path="/account">
+                <LoginSignup currentUser={currentUser}/>
+            </Route>
+            <Route exact path="/passport">
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits}/>
+            </Route>
 
-    <Container>
-        <Row>
-            <Col>
-                <ParkList parks={parks} handleClick={handleClick}/>
-            </Col>
-            <Col>
-                { viewVisitCard ? <CardContainer visits={visits}/> : <FeaturedPark park={park}/>}
-            </Col>
-        </Row>
-    </Container>
-
+        </Switch>
 )
 
 }

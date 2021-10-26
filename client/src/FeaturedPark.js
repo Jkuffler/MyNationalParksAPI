@@ -1,10 +1,12 @@
 import {useState} from 'react'
+import ParkList from './ParkList'
 
-function FeaturedPark({ park }) {
+function FeaturedPark({ park, parks, handleClick }) {
     
     return (
 
 <div>
+    <ParkList parks={parks} handleClick={handleClick}/>
     <h2>{park.name}</h2>
     <img src={park.image_url} style={{maxWidth: "400px"}}/>
     <p>{park.description}</p>
