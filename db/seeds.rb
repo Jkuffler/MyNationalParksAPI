@@ -15,6 +15,11 @@ end
 User.create(user_name: "Jason", password: "password", bio: "i love tacos")
 User.create(user_name: "David", password: "password", bio: "i love tacos")
 
+Visit.create(national_park: NationalPark.all.sample, user: User.all.sample, date: "2019/12/1")
+Visit.create(national_park: NationalPark.all.sample, user: User.all.sample, date: "2009/10/2")
+Visit.create(national_park: NationalPark.all.sample, user: User.all.sample, date: "2018/12/1")
+Visit.create(national_park: NationalPark.all.sample, user: User.all.sample, date: "2022/1/1")
+
 puts "done seeding"
 
 # This file should contain all the record creation needed to seed the database with its default values.
