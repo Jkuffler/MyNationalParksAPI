@@ -3,6 +3,7 @@ import FeaturedPark from './FeaturedPark'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import CardContainer from './CardContainer'
 
 
 
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 function Body () {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
+    const [visits, setVisits] = useState([])
 
     function getParks (){
         fetch(`/national_parks`)
@@ -23,6 +25,12 @@ function Body () {
         .then(data => setPark(data))
     }
 
+    function getVisits() {
+        fetch(`/visits`)
+        .then((r) => r.json())
+        .then(data => setVisits(data))
+    }
+console.log(visits)
     function handleClick(e) {
         let name = e.target.name
         let newPark = parks.filter(p => p.name === name)
@@ -31,6 +39,7 @@ function Body () {
 
     useEffect(getAPark, [])
     useEffect(getParks, [])
+    useEffect(getVisits, [])
 
     return(
 
@@ -41,6 +50,7 @@ function Body () {
             </Col>
             <Col>
                 <FeaturedPark park={park}/>
+                <CardContainer visits={visits}/>
             </Col>
         </Row>
     </Container>
