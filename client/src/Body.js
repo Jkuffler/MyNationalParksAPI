@@ -8,7 +8,7 @@ import {Switch, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import LoginSignup from './LoginSignup'
 
-function Body ({currentUser, viewVisitCard}) {
+function Body ({currentUser, setCurrentUser}) {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
     const [visits, setVisits] = useState([])
@@ -28,10 +28,18 @@ function Body ({currentUser, viewVisitCard}) {
 
     function getVisits() {
             fetch(`/visits`)
-            .then((r) => r.json())
-            .then(data => setVisits(data))
-    }
-// console.log(visits)
+            .then((r) => {
+                if (r.ok) {
+                    r.json()
+                    .then(visits => setVisits(visits))
+                }
+                else {
+                    r.json()
+                    .then(errors => console.log(errors.error))
+                }
+            })
+        }
+
     function handleClick(e) {
         let name = e.target.name
         let newPark = parks.filter(p => p.name === name)
@@ -48,7 +56,7 @@ function Body ({currentUser, viewVisitCard}) {
                 <FeaturedPark park={park} parks={parks} handleClick={handleClick}/>
             </Route>
             <Route exact path="/account">
-                <LoginSignup currentUser={currentUser}/>
+                <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
                 <CardContainer parks={parks} handleClick={handleClick} visits={visits}/>

@@ -24,8 +24,8 @@ function App() {
 
     return(
       <div>
-        <NavBar/>
-        <Body currentUser={currentUser} />
+        <NavBar currentUser={currentUser}/>
+        <Body currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       </div>
       )
 }
