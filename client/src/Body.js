@@ -1,11 +1,16 @@
 import ParkList from './ParkList'
 import FeaturedPark from './FeaturedPark'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 
 import { useEffect, useState } from "react";
 function Body () {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
+
     const url = "http://localhost:3000"
 
     function getParks (){
@@ -19,16 +24,28 @@ function Body () {
         .then((r) => r.json())
         .then(data => setPark(data))
     }
-console.log(park)
+
+    function handleClick(e) {
+        let name = e.target.name
+        let newPark = parks.filter(p => p.name === name)
+        setPark(newPark[0])
+    }
+
     useEffect(getAPark, [])
     useEffect(getParks, [])
 
     return(
 
-    <div>
-        <ParkList parks={parks}/>
-        <FeaturedPark park={park}/>
-    </div>
+    <Container>
+        <Row>
+            <Col>
+                <ParkList parks={parks} handleClick={handleClick}/>
+            </Col>
+            <Col>
+                <FeaturedPark park={park}/>
+            </Col>
+        </Row>
+    </Container>
 
 )
 

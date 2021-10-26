@@ -1,7 +1,7 @@
 // import NavBar from './NavBar'
 import Body from './Body'
-// import {useState} from 'react'
-// import LoginSignup from './LoginSignup'
+import LoginSignup from './LoginSignup'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // const [toggleLogin, setToggleLogin] = useState(false)
 
@@ -9,7 +9,7 @@ function App() {
 
     return(
       <div>
-      {/* <NavBar {setToggleLogin={setToggleLogin}/> */}
+      <NavBar/>
       <Body/>
       {/* <LoginSignup/> */}
       </div>
