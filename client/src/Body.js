@@ -4,14 +4,14 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CardContainer from './CardContainer'
+import {Switch, Route} from 'react-router-dom'
+import {useState, useEffect} from 'react'
 
-
-
-import { useEffect, useState } from "react";
-function Body () {
+function Body ({currentUser, viewVisitCard}) {
     const [parks, setParks] = useState([])
     const [park, setPark] = useState({})
     const [visits, setVisits] = useState([])
+
 
     function getParks (){
         fetch(`/national_parks`)
@@ -26,11 +26,13 @@ function Body () {
     }
 
     function getVisits() {
-        fetch(`/visits`)
-        .then((r) => r.json())
-        .then(data => setVisits(data))
+        currentUser?
+            fetch(`/visits`)
+            .then((r) => r.json())
+            .then(data => setVisits(data))
+        : console.log("Log in required!")
     }
-console.log(visits)
+// console.log(visits)
     function handleClick(e) {
         let name = e.target.name
         let newPark = parks.filter(p => p.name === name)
@@ -49,8 +51,7 @@ console.log(visits)
                 <ParkList parks={parks} handleClick={handleClick}/>
             </Col>
             <Col>
-                <FeaturedPark park={park}/>
-                <CardContainer visits={visits}/>
+                { viewVisitCard ? <CardContainer visits={visits}/> : <FeaturedPark park={park}/>}
             </Col>
         </Row>
     </Container>

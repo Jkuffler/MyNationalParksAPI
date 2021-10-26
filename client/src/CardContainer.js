@@ -1,7 +1,7 @@
 import VisitCard from "./VisitCard"
 function CardContainer({visits}){
 
-    const visitCards = visits.map(v => <VisitCard visit={v}/>)
+    const visitCards = visits.map(v => <VisitCard key={v.id} visit={v}/>)
     return(
     <div>
         {visitCards}
