@@ -11,7 +11,7 @@ function VisitCard({visit}) {
         </Card.Header>
         <Card.Img variant="top" src={visit.national_park.image_url} style={{maxHeight: '200px', objectFit: 'contain', padding: '10px'}}/>
         <Card.Body>     
-        <Card.Text>{visit.national_park.date}</Card.Text>
+        <Card.Text><b>Date visited:</b> {visit.date}</Card.Text>
         </Card.Body>
         </Card>
         </CardGroup>
