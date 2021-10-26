@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button"
 
 function ParkList ({ parks, handleClick }) {
+    console.table(parks)
     
     const listItems = parks.map(park =>
         <li  key={park.id} type="none"> 

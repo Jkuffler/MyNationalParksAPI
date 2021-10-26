@@ -1,4 +1,4 @@
-// import NavBar from './NavBar'
+import NavBar from './NavBar'
 import Body from './Body'
 import LoginSignup from './LoginSignup'
 import 'bootstrap/dist/css/bootstrap.min.css';
