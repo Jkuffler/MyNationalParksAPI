@@ -18,7 +18,13 @@ class UsersController < ApplicationController
         end
     end
 
-    
+    # def user_visits
+    #     if current_user
+    #         render json: current_user.visits
+    #     else
+    #         render json: { error: "Must be logged in for this action" }, status: :unauthorized
+    #     end
+    # end
 
     private
     def user_params

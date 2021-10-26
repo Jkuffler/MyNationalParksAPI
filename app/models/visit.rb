@@ -5,7 +5,6 @@ class Visit < ApplicationRecord
   validate :date, :date_cannot_be_in_future
 
   def date_cannot_be_in_future
-    byebug
     if date.present? && date > Date.today
       errors.add(:date, "can't be in the future!")
     end
