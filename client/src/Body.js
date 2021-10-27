@@ -59,7 +59,7 @@ function Body ({currentUser, setCurrentUser}) {
                 <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
-                <CardContainer parks={parks} handleClick={handleClick} visits={visits}/>
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits} currentUser={currentUser}/>
             </Route>
 
         </Switch>
