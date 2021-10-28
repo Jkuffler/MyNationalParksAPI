@@ -22,7 +22,7 @@ function Body ({currentUser, setCurrentUser}) {
     }
 
     function getAPark (){
-        fetch(`/national_parks/7`) //math.random for the featured card?
+        fetch(`/random`) //math.random for the featured card?
         .then((r) => r.json())
         .then(data => setPark(data))
     }

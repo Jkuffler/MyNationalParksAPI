@@ -13,4 +13,8 @@ class NationalParksController < ApplicationController
         end
     end
 
+    def random
+        render json: NationalPark.all.sample
+    end
+
 end
