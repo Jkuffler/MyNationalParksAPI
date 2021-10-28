@@ -1,14 +1,28 @@
 import { Button, Card, CardGroup } from 'react-bootstrap'
+import { useState } from 'react'
 
 
-function VisitCard({visit}) {
+function VisitCard({ visit }) {
+
+    const [formToggle, setFormToggle] = useState(false)
+
+    const [formData, setFormData] = useState({ 
+        date: visit.date,
+        description: visit.description,
+        image_url: visit.national_park.image_url
+    })
+
+    function handleOnChange(e) {
+        setFormData({...formData, [e.target.name]:e.target.value})
+    }
 
     return(
     <>
+    {!formToggle ? 
     <CardGroup style={{ padding:'10px'}}>
     <Card style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', hover: {color: 'blue'} }} className="gear-card"  >
         <Card.Header>
-        <Card.Title>{visit.national_park.name}</Card.Title> 
+            <Card.Title>{visit.national_park.name}</Card.Title> 
         </Card.Header>
         <Card.Img variant="top" src={visit.national_park.image_url} style={{maxHeight: '200px', objectFit: 'contain', padding: '10px'}}/>
         <Card.Body>     
@@ -18,8 +32,25 @@ function VisitCard({visit}) {
         <Card.Text><b>Description:</b> {visit.description}</Card.Text>
         </Card.Body>
         </Card>
-        </CardGroup>
-    
+        <Button onClick={() => setFormToggle(!formToggle)}>Update</Button>
+    </CardGroup>
+    :
+        <>
+        <form>
+            <div className="FormInput">
+                <input type="date" onChange={handleOnChange} placeholder={visit.date} name="date" value={formData.date}/>                
+            </div>
+            <div className="FormInput">
+                <input type="text" onChange={handleOnChange} placeholder={visit.description} name="description" value={formData.description}/>                
+            </div>
+            <div className="FormInput">
+                <input type="text" onChange={handleOnChange} placeholder={visit.image_url} name="image_url" value={formData.image_url}/>                
+            </div>
+                <button className="SubmitBtn">Update Visit</button>
+        </form>
+        <button onClick={() => setFormToggle(!formToggle)}>Back</button>
+        </>
+    }
     </>
         )
     
