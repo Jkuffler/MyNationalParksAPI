@@ -47,11 +47,12 @@ function Body ({currentUser, setCurrentUser}) {
 
     function updateVisits(visit) {
         let visitsArray = [...visits]
-        console.log(visitsArray)
-        let findVisit = visitsArray.find(v => visit.id === v.id)
-        findVisit = {...findVisit, description: visit.description, date: visit.date}
+        let updatedVisit = visitsArray.find(v => visit.id === v.id)
+        updatedVisit = {...updatedVisit, description: visit.description, date: visit.date}
         let index = visitsArray.findIndex(v => visit.id === v.id)
-     
+        visitsArray[index] = updatedVisit
+        console.log(updatedVisit)
+        setVisits(visitsArray)
     }
 
     // function refetchVisits(visit){
