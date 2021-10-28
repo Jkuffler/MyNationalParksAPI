@@ -45,10 +45,20 @@ function Body ({currentUser, setCurrentUser}) {
         setVisits([...visits, formData])
     }
 
-    function refetchVisits(){
-        setFetchToggle(!fetchToggle)
-        console.log("fired off")
-        }
+    function updateVisits(visit) {
+        let visitsArray = [...visits]
+        console.log(visitsArray)
+        let findVisit = visitsArray.find(v => visit.id === v.id)
+        findVisit = {...findVisit, description: visit.description, date: visit.date}
+        let index = visitsArray.findIndex(v => visit.id === v.id)
+     
+    }
+
+    // function refetchVisits(visit){
+    //     // setFetchToggle(!fetchToggle)
+    //     console.log(visit)
+    //     deleteVisit(visit)
+    //     }
 
     function deleteVisit(visit){
         setVisits(visits.filter(v => v.id !== visit.id))
@@ -73,7 +83,7 @@ function Body ({currentUser, setCurrentUser}) {
                 <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
-                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit} deleteVisit={deleteVisit} refetchVisits={refetchVisits}/>
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit} deleteVisit={deleteVisit} updateVisits={updateVisits}/>
             </Route>
 
         </Switch>

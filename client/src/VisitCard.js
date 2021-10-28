@@ -2,7 +2,7 @@ import { Button, Card, CardGroup } from 'react-bootstrap'
 import { useState } from 'react'
 
 
-function VisitCard({ visit, deleteVisit, refetchVisits }) {
+function VisitCard({ visit, deleteVisit, updateVisits, addVisit }) {
 
     const [formToggle, setFormToggle] = useState(false)
     // const [visit, setVisit] = useState(v)
@@ -13,7 +13,7 @@ function VisitCard({ visit, deleteVisit, refetchVisits }) {
         description: visit.description,
         // image_url: visit.national_park.image_url
     })
-            console.log(visit)
+
 
     function handleDelete() {
         fetch(`/visits/${visit.id}`, {method:"DELETE"})
@@ -35,7 +35,7 @@ function VisitCard({ visit, deleteVisit, refetchVisits }) {
         .then(resp => {
             if (resp.ok) {
                 resp.json()
-                .then(visit => refetchVisits())
+                .then(visit => updateVisits(visit))
                 setFormToggle(!formToggle)
                 setFormData({
                     date: visit.date,
