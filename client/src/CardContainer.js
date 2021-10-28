@@ -1,18 +1,20 @@
 import ParkList from "./ParkList"
 import VisitCard from "./VisitCard"
-import {useState} from 'react'
+import { useState } from 'react'
 
 
-function CardContainer({visits, parks, handleClick, currentUser}) {
+function CardContainer({visits, parks, handleClick, addVisit}) {
     
     const visitCards = visits.map(v => <VisitCard key={v.id} visit={v} />)
+
 
     const parkOptions = parks.map(p => <option>{p.name}</option> )
 
     const [formData, setFormData] = useState({
         national_park: "",  
         date: "",
-        description: ""
+        description: "",
+        // image_url: ""
     })
 
     function handleOnChange(e) {
@@ -37,7 +39,7 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
         .then(resp => {
             if (resp.ok) {
                 resp.json()
-                .then(data => console.log(data))
+                .then(visit => addVisit(visit))
                 setFormData({
                     national_park: "",
                     date: "",

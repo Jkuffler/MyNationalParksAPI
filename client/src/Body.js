@@ -40,6 +40,10 @@ function Body ({currentUser, setCurrentUser}) {
             })
         }
 
+    function addVisit(formData){
+        setVisits([...visits, formData])
+    }
+
     function handleClick(e) {
         let name = e.target.name
         let newPark = parks.filter(p => p.name === name)
@@ -59,7 +63,7 @@ function Body ({currentUser, setCurrentUser}) {
                 <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
-                <CardContainer parks={parks} handleClick={handleClick} visits={visits} currentUser={currentUser}/>
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit}/>
             </Route>
 
         </Switch>
