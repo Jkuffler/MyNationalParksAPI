@@ -6,8 +6,10 @@ import {useState} from 'react'
 function CardContainer({visits, parks, handleClick, currentUser}) {
     
     const visitCards = visits.map(v => <VisitCard key={v.id} visit={v} />)
+
+    const parkOptions = parks.map(p => <option>{p.name}</option> )
+
     const [formData, setFormData] = useState({
-        user_id: currentUser,
         national_park: "",
         date: "",
         description: ""
@@ -16,25 +18,31 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
     function handleOnChange(e) {
         setFormData({...formData, [e.target.name]:e.target.value})
     }
+    // console.log(parks)
+  
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        if(formData.national_park === "" || formData.date === "" || formData.description === "") return;
+        const parkVisited = parks.filter(p => formData.national_park === p.name)
+        const newVisit = {
+            national_park_id: parkVisited[0].id,
+            description: formData.description,
+            date: formData.date
+        }
         const headers = {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formData)
+            body: JSON.stringify(newVisit)
         }
-
         fetch('/visits', headers)
         .then(resp => resp.json())
-        .then(data => {
-            setFormData({
-                user_id: currentUser,
-                national_park: "",
-                date: "",
-                description: ""
-            })
-        })
+        .then(data => console.log(data))
+        // {
+        //     setFormData({
+        //         national_park: "",
+        //         date: "",
+        //         description: ""
+        // })
+        // })
     }
     return(
     <div>
@@ -42,7 +50,9 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
         {visitCards}
         <form>
             <div className="FormInput">
-                <input type="text" placeholder="National Park" onChange={handleOnChange} name="national_park" value={formData.national_park}/>
+            <select placeholder="National Park" onChange={handleOnChange} name="national_park" value={formData.national_park}>
+                {parkOptions}
+            </select>
             </div>
             <div className="FormInput">
                 <input type="date" onChange={handleOnChange} placeholder="Date" name="date" value={formData.date}/>                
