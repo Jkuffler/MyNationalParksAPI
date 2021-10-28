@@ -10,7 +10,7 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
     const parkOptions = parks.map(p => <option>{p.name}</option> )
 
     const [formData, setFormData] = useState({
-        national_park: "",
+        national_park: "",  
         date: "",
         description: ""
     })
@@ -19,12 +19,12 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
         setFormData({...formData, [e.target.name]:e.target.value})
     }
     // console.log(parks)
-  
+
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const parkVisited = parks.filter(p => formData.national_park === p.name)
         const newVisit = {
-            national_park_id: parkVisited[0].id,
+            national_park_id: parkVisited[0] ? parkVisited[0].id : "",
             description: formData.description,
             date: formData.date
         }
@@ -34,16 +34,24 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
             body: JSON.stringify(newVisit)
         }
         fetch('/visits', headers)
-        .then(resp => resp.json())
-        .then(data => console.log(data))
-        // {
-        //     setFormData({
-        //         national_park: "",
-        //         date: "",
-        //         description: ""
-        // })
-        // })
-    }
+        .then(resp => {
+            if (resp.ok) {
+                resp.json()
+                .then(data => console.log(data))
+                setFormData({
+                    national_park: "",
+                    date: "",
+                    description: ""
+                })
+            } else {
+                resp.json()
+                    .then(errors => alert(errors.error))
+            }
+        }
+            
+        
+        )}
+    
     return(
     <div>
         <ParkList parks={parks} handleClick={handleClick}/>
@@ -51,6 +59,9 @@ function CardContainer({visits, parks, handleClick, currentUser}) {
         <form>
             <div className="FormInput">
             <select placeholder="National Park" onChange={handleOnChange} name="national_park" value={formData.national_park}>
+                <option>
+                Choose a park!
+                </option>
                 {parkOptions}
             </select>
             </div>
