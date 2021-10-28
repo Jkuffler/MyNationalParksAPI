@@ -18,11 +18,11 @@ class VisitsController < ApplicationController
 
     def create # jk: before_action helps abstract out the smelly code during refactor. meaning we can handle the current_user conditional logic with rails' before_action config
         if current_user
-            new_visit = Visit.new(new_visit_params)
+            new_visit = current_user.visits.new(visit_params)
             if new_visit.save
                 render json: new_visit
             else
-                render json: { error: "Invalid entry"}, status: :unprocessable_not_found
+                render json: { error: new_visit.errors.full_messages}, status: :unprocessable_entity
             end
         else
             render json: { error: "Must log in to edit visits"}, status: :unauthorized
@@ -32,10 +32,10 @@ class VisitsController < ApplicationController
     def update
         if current_user
             visit = Visit.find_by(id: params[:id])
-            if visit.update
+            if visit.update(visit_params)
                 render json: visit
             else
-                render json: { error: "Invalid entry"}, status: :unprocessable_not_found
+                render json: { error: visit.errors.full_messages}, status: :unprocessable_entity
             end
         else
             render json: { error: "Must log in to edit visits"}, status: :unauthorized
@@ -57,7 +57,7 @@ class VisitsController < ApplicationController
     end
 
     private
-    def new_visit_params
-        params.permit(:description, :date)
+    def visit_params
+        params.permit(:description, :date, :national_park_id)
     end
 end
