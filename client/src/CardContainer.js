@@ -1,6 +1,8 @@
 import ParkList from "./ParkList"
 import VisitCard from "./VisitCard"
 import { useState } from 'react'
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 
 function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updateVisits}) {
@@ -53,8 +55,12 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
         )}
     
     return(
-    <div>
+    <Row>
+        <Col>
         <ParkList parks={parks} handleClick={handleClick}/>
+        </Col>
+        <Col>
+        <h2>My Passport</h2>
         {visitCards}
         <form>
             <div className="FormInput">
@@ -73,7 +79,8 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
             </div>
                 <button className="SubmitBtn" onClick={handleOnSubmit}>Add Visit</button>
         </form>
-    </div>
+        </Col>
+    </Row>
     
     )
 }
