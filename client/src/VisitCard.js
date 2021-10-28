@@ -1,4 +1,4 @@
-import { Button, Card, CardGroup } from 'react-bootstrap'
+import { Button, Card, CardGroup, Row, Col, ButtonGroup } from 'react-bootstrap'
 import { useState } from 'react'
 
 
@@ -55,7 +55,6 @@ function VisitCard({ visit, deleteVisit, updateVisits }) {
 
     return(
     <>
-    {!formToggle ? 
     <CardGroup style={{ padding:'10px'}}>
     <Card style={{ width: '18rem', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', hover: {color: 'blue'} }} className="gear-card"  >
         <Card.Header>
@@ -68,11 +67,14 @@ function VisitCard({ visit, deleteVisit, updateVisits }) {
         <Card.Body>     
         <Card.Text><b>Description:</b> {visit.description}</Card.Text>
         </Card.Body>
-        </Card>
-        <Button onClick={() => setFormToggle(!formToggle)}>Update</Button>
-        <Button onClick={handleDelete}>Delete</Button>
-    </CardGroup>
-    :
+        { !formToggle ?
+        <Row>
+            <ButtonGroup>
+                <Button variant="light" onClick={() => setFormToggle(!formToggle)}>✏️</Button>
+                <Button variant="light" onClick={handleDelete}>🗑</Button>
+            </ButtonGroup>
+        </Row>
+        :
         <>
         <form onSubmit={handleSubmit}>
             <div className="FormInput">
@@ -84,11 +86,13 @@ function VisitCard({ visit, deleteVisit, updateVisits }) {
             {/* <div className="FormInput">
                 <input type="text" onChange={handleOnChange} placeholder={visit.image_url} name="image_url" value={formData.image_url}/>                
             </div> */}
-                <button className="SubmitBtn">Update Visit</button>
+                <button className="SubmitBtn">Submit</button>
         </form>
-        <button onClick={() => setFormToggle(!formToggle)}>Back</button>
+        <Button onClick={() => setFormToggle(!formToggle)}>Back</Button>
         </>
-    }
+        }
+        </Card>
+    </CardGroup>
     </>
         )
     

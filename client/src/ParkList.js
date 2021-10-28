@@ -18,7 +18,7 @@ function ParkList ({ parks, handleClick }) {
 
     return (
     <div>
-        <label className="listTitle">National Parks</label>
+        <h2 className="listTitle">National Parks</h2>
         <ul>
             {listItems}
         </ul>
