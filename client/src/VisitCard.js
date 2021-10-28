@@ -74,7 +74,7 @@ function VisitCard({ v }) {
             </div> */}
                 <button className="SubmitBtn">Update Visit</button>
         </form>
-        <button>Back</button>
+        <button onClick={() => setFormToggle(!formToggle)}>Back</button>
         </>
     }
     </>
