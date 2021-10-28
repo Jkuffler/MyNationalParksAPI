@@ -1,4 +1,7 @@
-
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
 import { useState } from "react"
 
 function LoginSignup( { setCurrentUser }) {
@@ -42,15 +45,25 @@ function LoginSignup( { setCurrentUser }) {
 
     return(
         <div>
-            <form className="login" onSubmit={handleSubmit}>
-                <label>Username:</label>
-                    <input type="text" name="user_name" value={formData.name} onChange={handleOnChange}>
-                    </input>
-                <label>Password:</label>
-                <input type="password" name="password" value={formData.password} onChange={handleOnChange} autoComplete="off">
-                </input>
-                <input type="submit"></input>
-            </form>
+            <Container> 
+            <Form className="login" onSubmit={handleSubmit} align="center">
+            <Stack>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >                
+                    <Form.Control type="username" placeholder="Enter Username" name="user_name" value={formData.name} onChange={handleOnChange}/>
+                        {/* <input type="text" name="user_name" value={formData.name} onChange={handleOnChange}></input> */}
+                </Form.Group>
+            </Stack>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Control type="password" placeholder="Enter Password" name="password" value={formData.password} onChange={handleOnChange} autoComplete="off"/>
+                        {/* <input type="password" name="password" value={formData.password} onChange={handleOnChange} autoComplete="off"> */}
+                <div>
+                <Button variant="success">Submit</Button>
+                </div>
+                
+                </Form.Group>
+                
+            </Form>
+            </Container>
         </div>
     )
 }
