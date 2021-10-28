@@ -44,24 +44,25 @@ function LoginSignup( { setCurrentUser }) {
     }
 
     return(
-        <div>
-            <Container> 
-            <Form className="login" onSubmit={handleSubmit} align="center">
-            <Stack>
+        <div className="login">
+            <Container size="small"  > 
+            <Form inline className="login" align="center" onSubmit={handleSubmit}>
+            <Stack gap={5} className="col-md-5 mx-auto">
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >                
                     <Form.Control type="username" placeholder="Enter Username" name="user_name" value={formData.name} onChange={handleOnChange}/>
                         {/* <input type="text" name="user_name" value={formData.name} onChange={handleOnChange}></input> */}
                 </Form.Group>
             </Stack>
+            <Stack gap={5} className="col-md-5 mx-auto">
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Control type="password" placeholder="Enter Password" name="password" value={formData.password} onChange={handleOnChange} autoComplete="off"/>
                         {/* <input type="password" name="password" value={formData.password} onChange={handleOnChange} autoComplete="off"> */}
                 <div>
-                <Button variant="success">Submit</Button>
+                <Button type="submit" variant="success">Submit</Button>
                 </div>
                 
                 </Form.Group>
-                
+                </Stack>
             </Form>
             </Container>
         </div>
