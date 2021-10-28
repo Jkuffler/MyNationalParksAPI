@@ -5,10 +5,8 @@ import { useState } from 'react'
 
 function CardContainer({visits, parks, handleClick, addVisit}) {
     
-    const visitCards = visits.map(v => <VisitCard key={v.id} visit={v} />)
-
-
-    const parkOptions = parks.map(p => <option>{p.name}</option> )
+    const visitCards = visits.map(v => <VisitCard key={v.id} v={v} />)
+    const parkOptions = parks.map(p => <option key={p.id}>{p.name}</option> )
 
     const [formData, setFormData] = useState({
         national_park: "",  

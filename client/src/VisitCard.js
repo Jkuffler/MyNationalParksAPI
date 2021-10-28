@@ -2,17 +2,16 @@ import { Button, Card, CardGroup } from 'react-bootstrap'
 import { useState } from 'react'
 
 
-function VisitCard({ visit }) {
+function VisitCard({ v }) {
 
     const [formToggle, setFormToggle] = useState(false)
+    const [visit, setVisit] = useState(v)
 
     const [formData, setFormData] = useState({ 
         date: visit.date,
         description: visit.description,
         // image_url: visit.national_park.image_url
     })
-
-
 
     function handleOnChange(e) {
         setFormData({...formData, [e.target.name]:e.target.value})
@@ -29,7 +28,7 @@ function VisitCard({ visit }) {
         .then(resp => {
             if (resp.ok) {
                 resp.json()
-                .then(visit => console.log(visit))
+                .then(visit => setVisit(visit))
                 setFormToggle(!formToggle)
                 setFormData({
                     date: visit.date,
