@@ -3,9 +3,9 @@ import VisitCard from "./VisitCard"
 import { useState } from 'react'
 
 
-function CardContainer({visits, parks, handleClick, addVisit}) {
+function CardContainer({visits, parks, handleClick, addVisit, deleteVisit}) {
     
-    const visitCards = visits.map(v => <VisitCard key={v.id} v={v} />)
+    const visitCards = visits.map(visit => <VisitCard key={visit.id} visit={visit} deleteVisit={deleteVisit} />)
     const parkOptions = parks.map(p => <option key={p.id}>{p.name}</option> )
 
     const [formData, setFormData] = useState({

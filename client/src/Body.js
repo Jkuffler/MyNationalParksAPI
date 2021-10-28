@@ -44,6 +44,10 @@ function Body ({currentUser, setCurrentUser}) {
         setVisits([...visits, formData])
     }
 
+    function deleteVisit(visit){
+        setVisits(visits.filter(v => v.id !== visit.id))
+    }
+
     function handleClick(e) {
         let name = e.target.name
         let newPark = parks.filter(p => p.name === name)
@@ -63,7 +67,7 @@ function Body ({currentUser, setCurrentUser}) {
                 <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
-                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit}/>
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit} deleteVisit={deleteVisit}/>
             </Route>
 
         </Switch>

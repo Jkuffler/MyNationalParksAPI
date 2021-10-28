@@ -2,16 +2,23 @@ import { Button, Card, CardGroup } from 'react-bootstrap'
 import { useState } from 'react'
 
 
-function VisitCard({ v }) {
+function VisitCard({ visit, deleteVisit }) {
 
     const [formToggle, setFormToggle] = useState(false)
-    const [visit, setVisit] = useState(v)
+    // const [visit, setVisit] = useState(v)
+
 
     const [formData, setFormData] = useState({ 
         date: visit.date,
         description: visit.description,
         // image_url: visit.national_park.image_url
     })
+            console.log(visit)
+
+    function handleDelete() {
+        fetch(`/visits/${visit.id}`, {method:"DELETE"})
+        deleteVisit(visit)
+    }
 
     function handleOnChange(e) {
         setFormData({...formData, [e.target.name]:e.target.value})
@@ -28,7 +35,7 @@ function VisitCard({ v }) {
         .then(resp => {
             if (resp.ok) {
                 resp.json()
-                .then(visit => setVisit(visit))
+                .then(visit => console.log(visit))
                 setFormToggle(!formToggle)
                 setFormData({
                     date: visit.date,
@@ -59,15 +66,16 @@ function VisitCard({ v }) {
         </Card.Body>
         </Card>
         <Button onClick={() => setFormToggle(!formToggle)}>Update</Button>
+        <Button onClick={handleDelete}>Delete</Button>
     </CardGroup>
     :
         <>
         <form onSubmit={handleSubmit}>
             <div className="FormInput">
-                <input type="date" onChange={handleOnChange} placeholder={visit.date} name="date" value={formData.date}/>                
+                <input type="date" onChange={handleOnChange} placeholder="Date" name="date" value={formData.date}/>                
             </div>
             <div className="FormInput">
-                <input type="text" onChange={handleOnChange} placeholder={visit.description} name="description" value={formData.description}/>                
+                <input type="text" onChange={handleOnChange} placeholder="Description" name="description" value={formData.description}/>                
             </div>
             {/* <div className="FormInput">
                 <input type="text" onChange={handleOnChange} placeholder={visit.image_url} name="image_url" value={formData.image_url}/>                
