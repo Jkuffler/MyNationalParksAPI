@@ -70,7 +70,7 @@ function Body ({currentUser, setCurrentUser}) {
     useEffect(getVisits, [])
 
     return(
-        <Container fluid className="p-4">
+        <Container className="p-4">
         <Switch>
             <Route exact path="/">
                 <FeaturedPark park={park} parks={parks} handleClick={handleClick}/>

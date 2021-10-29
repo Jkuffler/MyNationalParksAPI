@@ -91,7 +91,7 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
         </form>
         </Col>
         :
-        <Col>
+        <Col className="text-center">
             <h2 className="text-center">{park.name}</h2>
             <img src={park.image_url} style={{maxWidth: "400px"}}/>
             <p>{park.description}</p>
