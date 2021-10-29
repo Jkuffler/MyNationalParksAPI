@@ -98,6 +98,7 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
             <p><b>Location:</b> {park.location}</p>
             <p><b>Date Established:</b> {park.date_established}</p>
             <p><b>Size:</b> {park.area} acres</p>
+            <button onClick={() => setViewFeatPark(false)}>Back to passport</button>
         </Col>
 }
     </Row>
