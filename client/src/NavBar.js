@@ -14,6 +14,8 @@ function NavBar( {currentUser} ) {
         !currentUser ? alert('You must log in') : console.log('cool!')
     }
 
+    const passportHref = currentUser ? "/passport" : "/"
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -26,7 +28,7 @@ function NavBar( {currentUser} ) {
                     My National Parks
                 </Navbar.Brand>
                 <Nav>
-                <Nav.Link href="/passport" onClick={handlePassportClick}>
+                <Nav.Link href={passportHref} onClick={handlePassportClick}>
                     My Passport
                 </Nav.Link>
                 <Nav.Link href="/">
