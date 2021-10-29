@@ -19,13 +19,15 @@ function ParkList ({ parks, handleClick }) {
         )
 
     return (
-    <div>
-    <h2 className="listTitle">National Parks</h2>
-    <div className="overflow-auto" style={{maxWidth: "250px", maxHeight: "600px"}}>
-        <ul>
-            {listItems}
-        </ul>
-    </div>
+    <div className={"d-flex flex-column"}>
+            <ul>
+            <h2>National Parks</h2>
+            </ul>
+            <div className="overflow-auto" style={{maxWidth: "250px", maxHeight: "600px"}}>
+            <ul className="text-left">
+                {listItems}
+            </ul>
+        </div>
     </div>
     )
 }

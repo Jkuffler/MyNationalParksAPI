@@ -1,17 +1,17 @@
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Container from "react-bootstrap/Container"
 import ParkList from './ParkList'
 
 function FeaturedPark({ park, parks, handleClick }) {
     
     return (
-
 <Row>
     <Col>
         <ParkList parks={parks} handleClick={handleClick}/>
     </Col>
     <Col>
-        <h2>{park.name}</h2>
+        <h2 className="text-center">{park.name}</h2>
         <img src={park.image_url} style={{maxWidth: "400px"}}/>
         <p>{park.description}</p>
         <p><b>Location:</b> {park.location}</p>

@@ -70,7 +70,7 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
         </Col>
         {!viewFeatPark ? 
         <Col>
-        <h2>My Passport</h2>
+        <h2 className="text-center">My Passport</h2>
         {visitCards}
         <form>
             <div className="FormInput">
@@ -92,7 +92,7 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
         </Col>
         :
         <Col>
-            <h2>{park.name}</h2>
+            <h2 className="text-center">{park.name}</h2>
             <img src={park.image_url} style={{maxWidth: "400px"}}/>
             <p>{park.description}</p>
             <p><b>Location:</b> {park.location}</p>
