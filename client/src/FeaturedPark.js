@@ -18,7 +18,6 @@ function FeaturedPark({ park, parks, handleClick }) {
         <p><b>Date Established:</b> {park.date_established}</p>
         <p><b>Size:</b> {park.area} acres</p>
     </Col>
-    {/* <p>{park.rating}</p> */}
 </Row>
     )
 }

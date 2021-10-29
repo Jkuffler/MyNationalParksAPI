@@ -55,12 +55,6 @@ function Body ({currentUser, setCurrentUser}) {
         setVisits(visitsArray)
     }
 
-    // function refetchVisits(visit){
-    //     // setFetchToggle(!fetchToggle)
-    //     console.log(visit)
-    //     deleteVisit(visit)
-    //     }
-
     function deleteVisit(visit){
         setVisits(visits.filter(v => v.id !== visit.id))
     }
@@ -73,7 +67,7 @@ function Body ({currentUser, setCurrentUser}) {
 
     useEffect(getAPark, [])
     useEffect(getParks, [])
-    useEffect(getVisits, [fetchToggle])
+    useEffect(getVisits, [])
 
     return(
         <Switch>
@@ -84,7 +78,7 @@ function Body ({currentUser, setCurrentUser}) {
                 <LoginSignup currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path="/passport">
-                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit} deleteVisit={deleteVisit} updateVisits={updateVisits}/>
+                <CardContainer parks={parks} handleClick={handleClick} visits={visits} addVisit={addVisit} deleteVisit={deleteVisit} updateVisits={updateVisits} park={park}/>
             </Route>
 
         </Switch>

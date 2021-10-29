@@ -5,10 +5,13 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 
-function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updateVisits}) {
+function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updateVisits, park}) {
     
+    const [viewFeatPark, setViewFeatPark] = useState(false)
+
     const visitCards = visits.map(visit => <VisitCard key={visit.id} visit={visit} deleteVisit={deleteVisit} addVisit={addVisit} updateVisits={updateVisits} />)
     const parkOptions = parks.map(p => <option key={p.id}>{p.name}</option> )
+
 
     const [formData, setFormData] = useState({
         national_park: "",  
@@ -50,15 +53,22 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
                     .then(errors => alert(errors.error))
             }
         }
-            
-        
         )}
-    
+
+    function onHandleClick(e){
+        handleClick(e)
+        setViewFeatPark(true)
+        console.log("test")
+    }
+
+
+
     return(
     <Row>
         <Col>
-        <ParkList parks={parks} handleClick={handleClick}/>
+        <ParkList parks={parks} handleClick={onHandleClick}/>
         </Col>
+        {!viewFeatPark ? 
         <Col>
         <h2>My Passport</h2>
         {visitCards}
@@ -80,6 +90,16 @@ function CardContainer({visits, parks, handleClick, addVisit, deleteVisit, updat
                 <button className="SubmitBtn" onClick={handleOnSubmit}>Add Visit</button>
         </form>
         </Col>
+        :
+        <Col>
+            <h2>{park.name}</h2>
+            <img src={park.image_url} style={{maxWidth: "400px"}}/>
+            <p>{park.description}</p>
+            <p><b>Location:</b> {park.location}</p>
+            <p><b>Date Established:</b> {park.date_established}</p>
+            <p><b>Size:</b> {park.area} acres</p>
+        </Col>
+}
     </Row>
     
     )
