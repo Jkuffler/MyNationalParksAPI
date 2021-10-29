@@ -1,11 +1,13 @@
-
+import {useHistory} from 'react-router-dom'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 function NavBar( {currentUser} ) {
+    let history = useHistory()
 
     function handleLogout(){
         console.log("fired!")
         fetch("/logout", {method: "DELETE"})
+        history.push("/")
     }
 
     function handlePassportClick() {
@@ -31,7 +33,7 @@ function NavBar( {currentUser} ) {
                     All Parks
                 </Nav.Link>
                 { currentUser ? 
-                    <Nav.Link onClick={handleLogout}>
+                    <Nav.Link onClick={handleLogout} href="/">
                         Log Out
                     </Nav.Link>
                     : <Nav.Link href="/account">

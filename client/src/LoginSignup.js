@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
 import { useState } from "react"
+import {useHistory} from "react-router-dom"
 
 function LoginSignup( { setCurrentUser }) {
 
+    let history = useHistory()
     const [formData, setFormData] = useState({
         user_name: "",
         password: ""
@@ -15,7 +17,6 @@ function LoginSignup( { setCurrentUser }) {
 
     function handleSubmit(e){
         e.preventDefault()
-
         const configObj = {
             method: "POST", 
             headers: {
@@ -29,8 +30,8 @@ function LoginSignup( { setCurrentUser }) {
             if (resp.ok) {
                 resp.json()
                 .then(user => setCurrentUser(user))
-            }
-            else {
+                history.push("/")
+            } else {
                 resp.json().then( errors => alert(errors.error))
             }
         })
@@ -56,6 +57,7 @@ function LoginSignup( { setCurrentUser }) {
             if (resp.ok) {
                 resp.json()
                 .then(user => setCurrentUser(user))
+                history.push("/")
             }
             else {
                 resp.json().then( errors => alert(errors.error))
